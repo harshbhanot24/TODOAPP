@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TO_DO App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body class="bg-light">
+    <div  class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                    <div class="card  bg-light mb-3 mt-4 shadow-lg  rounded" style="max-width: 40rem;">
+                            <div class="card-header bg-dark text-white">
+                                    <h2 class="text text-center">  <strong>My To Do List</strong></h2></div>
+                                    <small class="text text-center text-info">Just keep on adding to the list by pressing Add button and enjoy</small>
+                            <div class="card-body">
+                              <h5 class="card-title">Press Enter to Add new task</h5>
+                              <div class="input-group mb-3">
+                                    <input type="text" id="myInput" class="form-control" placeholder="Title...">
+                                    <div class="input-group-append">
+                                        <button onclick="newElement()" class="btn btn-primary">Add <i class="fa fa-plus-square"></i></button>
+                                    </div>
+                                  </div>
+                                  <div class="bg-light">
+                                        <ul id="myUL" class="list-group ">
+                    
+                                            </ul>
+                                  </div>
+                            
+                              </div>
+                          </div>
+       
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        
+      
+       
+<script>
+var myNodelist = document.getElementsByTagName("li");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("");
+  span.className = "fa";
+  span.className = "fa-close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;    div.style.display = "none";
+  }
+}
+
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  li.className="list-group-item m-1 bg-light shadow round" ;
+  
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t); 
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+} 
+</script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>   
+</body>
+</html>
